@@ -4,13 +4,13 @@ data "azurerm_resource_group" "rg" {
 
 data "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
-  resource_group_name = data.azurerm_resource_group.rg.name
+  resource_group_name = var.vnet_resource_group_name
 }
 
 data "azurerm_subnet" "subnet" {
   name                 = var.subnet_name
   virtual_network_name = data.azurerm_virtual_network.vnet.name
-  resource_group_name  = data.azurerm_resource_group.rg.name
+  resource_group_name  = var.vnet_resource_group_name
 }
 
 resource "azurerm_public_ip" "pip" {
@@ -106,7 +106,7 @@ resource "azurerm_network_interface_security_group_association" "nic_nsg" {
   network_security_group_id = azurerm_network_security_group.nsg.id
 }
 
-resource "azurerm_linux_virtual_machine" "vm" {
+resource "azurerm_linux_virtual_machine" "RiseUp-Migration-Lab" {
   name                = var.vm_name
   location            = var.location
   resource_group_name = data.azurerm_resource_group.rg.name

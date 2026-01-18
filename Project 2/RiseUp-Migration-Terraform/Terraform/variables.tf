@@ -13,7 +13,7 @@ variable "resource_group_name" {
 variable "location" {
   type        = string
   description = "Azure region for resources."
-  default     = "East US 2"
+  default     = "eastus2"
 }
 
 variable "vm_name" {
@@ -39,10 +39,15 @@ variable "vnet_name" {
   description = "Existing VNet name in the cyber range."
   default     = "Cyber-Range-VNet"
 }
-
+variable "vnet_resource_group_name" {
+  type        = string
+  description = "Resource group where the existing VNet lives (often different from the deployment RG in cyber ranges)."
+  default     = "Cyber-Range-Admin"
+}
 variable "subnet_name" {
   type        = string
-  description = "Existing subnet name inside the cyber range VNet (you will look this up once)."
+  description = "Existing subnet name inside the cyber range VNet (you will look this up)."
+  default     = "Cyber-Range-Subnet"
 }
 
 variable "public_ip_name" {
